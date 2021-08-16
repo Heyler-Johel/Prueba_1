@@ -4,8 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Prueba_1.Models;
+
+
 
 namespace Prueba_1.Controllers
 {
@@ -22,6 +25,29 @@ namespace Prueba_1.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string username, string password)
+        {
+            if (username != null && password != null && username.Equals("acc1") && password.Equals("123"))
+            {
+                HttpContext.Session.SetString("username", username);
+                return View("Index");
+            }
+            else
+            {
+                ViewBag.error = "Invalid Account";
+                return View("Login");
+            }
+        }
+
+
 
         public IActionResult Privacy()
         {

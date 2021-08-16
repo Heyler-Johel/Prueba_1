@@ -15,5 +15,7 @@ namespace Prueba_1.Models
         public string Photo { get; set; }
         public float Height { get; set; }
         public float Weight { get; set; }
+
+        public ICollection<Bill> Bills { get; set; }
     }
 }
