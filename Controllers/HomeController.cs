@@ -21,6 +21,20 @@ namespace Prueba_1.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public IActionResult Index(string username, string password)
+        {
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                return View("Index");
+            }
+            else
+            {
+                return View("Login");
+            }
+        }
+
+        [HttpPost]
         public IActionResult Index()
         {
             return View();
@@ -49,9 +63,11 @@ namespace Prueba_1.Controllers
 
 
 
-        public IActionResult Privacy()
+        public IActionResult Logout()
         {
-            return View();
+            HttpContext.Session.Remove("username"); // it will clear the session at the end of request
+            return RedirectToAction("Login", "Home");
+            //return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

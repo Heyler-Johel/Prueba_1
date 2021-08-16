@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Prueba_1.Data;
 using Prueba_1.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Prueba_1.Controllers
 {
@@ -20,9 +21,18 @@ namespace Prueba_1.Controllers
         }
 
         // GET: Clients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string username, string password)
         {
-            return View(await _context.Clients.ToListAsync());
+            if (HttpContext.Session.GetString("username") != null)
+            {
+                return View(await _context.Clients.ToListAsync());
+            }
+            else
+            {
+                ViewBag.error = "Invalid Account";
+                return View("../Home/Login");
+            }
+            
         }
 
         // GET: Clients/Details/5
