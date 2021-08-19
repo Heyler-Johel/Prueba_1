@@ -18,14 +18,14 @@ namespace Prueba_1.Data
 
             var clients = new Client[]
             {
-            new Client{Name="Carson",LastName="Alexanders",BirthDate=DateTime.Parse("2005-09-01")},
-            new Client{Name="Meredith",LastName="Alonso",BirthDate=DateTime.Parse("2002-09-01")},
-            new Client{Name="Arturo",LastName="Anand",BirthDate=DateTime.Parse("2003-09-01")},
-            new Client{Name="Gytis",LastName="Barzdukas",BirthDate=DateTime.Parse("2002-09-01")},
-            new Client{Name="Yan",LastName="Li",BirthDate=DateTime.Parse("2002-09-01")},
-            new Client{Name="Peggy",LastName="Justice",BirthDate=DateTime.Parse("2001-09-01")},
-            new Client{Name="Laura",LastName="Norman",BirthDate=DateTime.Parse("2003-09-01")},
-            new Client{Name="Nino",LastName="Olivetto",BirthDate=DateTime.Parse("2005-09-01")}
+            new Client{Name="Carson",LastName="Alexanders",IdentificationCard="117",BirthDate=DateTime.Parse("2005-09-01")},
+            new Client{Name="Meredith",LastName="Alonso",IdentificationCard="118",BirthDate=DateTime.Parse("2002-09-01")},
+            new Client{Name="Arturo",LastName="Anand",IdentificationCard="119",BirthDate=DateTime.Parse("2003-09-01")},
+            new Client{Name="Gytis",LastName="Barzdukas",IdentificationCard="120",BirthDate=DateTime.Parse("2002-09-01")},
+            new Client{Name="Yan",LastName="Li",IdentificationCard="121",BirthDate=DateTime.Parse("2002-09-01")},
+            new Client{Name="Peggy",LastName="Justice",IdentificationCard="122",BirthDate=DateTime.Parse("2001-09-01")},
+            new Client{Name="Laura",LastName="Norman",IdentificationCard="123",BirthDate=DateTime.Parse("2003-09-01")},
+            new Client{Name="Nino",LastName="Olivetto",IdentificationCard="124",BirthDate=DateTime.Parse("2005-09-01")}
             };
             foreach (Client s in clients)
             {
@@ -46,6 +46,18 @@ namespace Prueba_1.Data
             foreach (Bill c in bills)
             {
                 context.Bills.Add(c);
+            }
+            context.SaveChanges();
+
+            var user = new User[]
+            {
+            new User{IdentificationCard="117", Password="ka1212"},
+            new User{IdentificationCard="118", Password="lslsjk"},
+            new User{IdentificationCard="120", Password="aaam12"}
+            };
+            foreach (User c in user)
+            {
+                context.User.Add(c);
             }
             context.SaveChanges();
         }
